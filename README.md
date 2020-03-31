@@ -36,7 +36,9 @@ This package has all functions collected in *R* folder. Almost all functions fol
 
 # Author
 
-Yiqiao Yin has been a Research Assistant at Columbia University since 2017. Prior to his current position, he has been a Researcher at Simon Business School with professors from AQR Capital. 
+Yiqiao Yin is a Data Scientist at Bayer. He has been a Research Assistant at Columbia University since 2017. Prior to his current position, he has been a Researcher at Simon Business School with professors from AQR Capital. 
+
+He is admitted to Ph. D. program in Statistics at Columbia University and he will be working on machine learning and generalized big data problems.
 
 # Acknowledge
 
