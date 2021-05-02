@@ -5,7 +5,7 @@
 This is the library that I use to collect common machine learning algorithm I use for research project and industrial practice.
 
 <p align="center">
-  <img width="800" src="https://github.com/yiqiao-yin/YinsLibrary/blob/master/figs/HELLO2.gif">
+  <img width="800" src="https://github.com/yiqiao-yin/YinsLibrary__/blob/master/figs/HELLO2.gif">
 </p>
 <p align="center">
 	<img src="https://img.shields.io/badge/stars-30+-blue.svg"/>
