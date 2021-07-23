@@ -42,4 +42,4 @@ Prior to Columbia, I have held professional positions including an enterprise-le
 
 # Acknowledge
 
-This package is jointly designed with [Statistical Machine Learning](https://github.com/yiqiao-yin/Statistical-Machine-Learning) and one can refer to my [Advice](https://github.com/yiqiao-yin/YinsRLab/blob/master/Advice.md) to my audience and to those who are interested in developing their own packages.
+This package is jointly designed with [Statistical Machine Learning](https://github.com/yiqiao-yin/Statistical-Machine-Learning) and one can refer to my [Advice](https://github.com/yiqiao-yin/Statistical-Machine-Learning/blob/master/Story.md) to my audience and to those who are interested in developing their own packages.
