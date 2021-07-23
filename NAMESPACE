@@ -4,6 +4,9 @@ export(KMEANS_VS)
 export(GaborFeatures)
 
 # MACHINE LEARNING ALGORITHMS
+export(KMEANS_Predictor)
+export(LDA_Predictor)
+export(QDA_Predictor)
 export(Logistic)
 export(Logistic_Classifier)
 export(BayesGLM_Classifier)

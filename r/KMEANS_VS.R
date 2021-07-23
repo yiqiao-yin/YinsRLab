@@ -1,5 +1,5 @@
 #' @title Unsupervised Non-parametric Feature Selection using K-means Clustering
-#' @description This function accepts input of data and parameteres and produce output of new data.
+#' @description This function accepts input of data and parameters and produce output of new data.
 #' @param symbol
 #' @return NULL
 #' @examples  KMEANS_VS()
