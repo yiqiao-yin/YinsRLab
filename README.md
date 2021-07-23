@@ -1,11 +1,11 @@
-# YinsLibrary
+# YinsRLab
 [![YinsCapital](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://yinscapital.com/research/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 This is the library that I use to collect common machine learning algorithm I use for research project and industrial practice.
 
 <p align="center">
-  <img width="800" src="https://github.com/yiqiao-yin/YinsLibrary__/blob/master/figs/HELLO2.gif">
+  <img width="800" src="https://github.com/yiqiao-yin/# YinsRLab/blob/master/figs/HELLO2.gif">
 </p>
 <p align="center">
 	<img src="https://img.shields.io/badge/stars-30+-blue.svg"/>
@@ -21,8 +21,8 @@ The installation of this package is simple. We recommend to use devtools to inst
 # quantmod, stats, xts, TTR, knitr, gtools, glmnet, fastAdaboost, e1071, keras, naivebayes, randomForest, iRF, BayesTree, gbm, ipred, pROC, Rtts, audio, beepr
 # Please install them if you do not have them. 
 
-# Install Package: Yin's Library (i.e. YinsLibrary)
-devtools::install_github("yiqiao-yin/YinsLibrary")
+# Install Package: Yin's RLab (i.e. YinsRLab)
+devtools::install_github("yiqiao-yin/YinsRLab")
 ```
 
 # Input
@@ -42,4 +42,4 @@ He is admitted to Ph. D. program in Statistics at Columbia University and he wil
 
 # Acknowledge
 
-This package is jointly designed with [Statistical Machine Learning](https://github.com/yiqiao-yin/Statistical-Machine-Learning) and one can refer to my [Advice](https://github.com/yiqiao-yin/YinsLibrary/blob/master/Advice.md) to my audience and to those who are interested in developing their own packages.
+This package is jointly designed with [Statistical Machine Learning](https://github.com/yiqiao-yin/Statistical-Machine-Learning) and one can refer to my [Advice](https://github.com/yiqiao-yin/YinsRLab/blob/master/Advice.md) to my audience and to those who are interested in developing their own packages.
