@@ -30,9 +30,7 @@ devtools::install_github("yiqiao-yin/YinsRLab")
 This package has all functions collected in *R* folder. Almost all functions following the following format:
 - input $X$: this is the explanatory variables in the data set;
 - input $y$: this is the response variable in the data set;
-- input *cutoff*: this is a numerical value from 0 to 1 (default value is 0.9), implying that the algorithm will take the first 90% of the observation as training and the rest as testing;
-- input parameters: this is dependent on each function (ex: for trees, there are number of trees, for SVM, there is gamma, etc..);
-- input *cutoff.coefficient*: this is a value with default at 1, which means the algorithm is setting exactly mean of predicted scores as cutoff to convert scores into binary values.
+- input *cutoff*: this is a numerical value from 0 to 1 (default value is 0.9), implying that the algorithm will take the first 90% of the observation as training and the rest as testing
 
 # Author
 
