@@ -36,9 +36,9 @@ This package has all functions collected in *R* folder. Almost all functions fol
 
 # Author
 
-Yiqiao Yin is a Data Scientist at Bayer. He has been a Research Assistant at Columbia University since 2017. Prior to his current position, he has been a Researcher at Simon Business School with professors from AQR Capital. 
+I am currently a PhD student in Statistics at Columbia University. 
 
-He is admitted to Ph. D. program in Statistics at Columbia University and he will be working on machine learning and generalized big data problems.
+Prior to Columbia, I have held professional positions including an enterprise-level Data Scientist at Bayer and a quantitative researcher at AQR working on alternative quantitative approaches to portfolio management and factor-based trading, and a trader at T3 Trading on Wall Street. I supervise a small fund specializing in algorithmic trading (since 2011, performance is here). I also run my own YouTube Channel.
 
 # Acknowledge
 
