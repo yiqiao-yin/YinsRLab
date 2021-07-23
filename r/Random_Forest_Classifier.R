@@ -12,16 +12,18 @@ Random_Forest_Classifier <- function(
   cutoff = .9,
   num.tree = 10,
   num.try = sqrt(ncol(all)),
+  node.size = sqrt(ncol(all)),
   cutoff.coefficient = 1,
-  SV.cutoff = 1:10
+  SV.cutoff = 1:ncol(all[, -1])
 ) {
 
   # Compile data
   all <- data.frame(cbind(y,x))
 
   # Split data:
-  train <- all[1:round(cutoff*nrow(all),0),]; dim(train) # Training set
-  test <- all[(round(cutoff*nrow(all),0)+1):nrow(all),]; dim(test) # Testing set
+  trainIdx <- 1:round(cutoff*nrow(all),0)
+  train <- all[trainIdx, ]; dim(train) # Training set
+  test <- all[-trainIdx, ]; dim(test) # Testing set
 
   # Identify Response and Explanatory:
   train.x <- train[,-1]; dim(train.x)
@@ -36,11 +38,13 @@ Random_Forest_Classifier <- function(
     xtest = as.matrix(test.x),
     ytest = as.factor(test.y),
     ntree = num.tree,
-    mtry = num.try
-  )
+    mtry = num.try,
+    nodesize = node.size,
+    importance = T,
+    localImp = T)
   sum <- summary(model)
 
-  # Extract imporance
+  # Extract importance
   feature.and.score <- data.frame(model$importance)
   feature.score <- feature.and.score[order(feature.and.score, decreasing = TRUE), ]
   feature.order <- rownames(feature.and.score)[order(feature.and.score, decreasing = TRUE)]
@@ -90,6 +94,7 @@ Random_Forest_Classifier <- function(
   return(
     list(
       Summary = model,
+      Plot = randomForest::varImpPlot(model),
       Training.Accuracy = percent.train,
       Training.AUC = auc.train,
       Important.Variables = selected.variable,
@@ -105,9 +110,6 @@ Random_Forest_Classifier <- function(
       AUC = auc,
       Gini = auc*2 - 1,
       Truth.vs.Predicted.Probabilities = truth.vs.pred.prob
-      #AUC.Plot = plot(
-      #  1 - spec, sens, type = "l", col = "red",
-      #  ylab = "Sensitivity", xlab = "1 - Specificity")
     )
   )
 } # End of function

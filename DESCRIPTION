@@ -1,11 +1,11 @@
-Package: YinsLibrary
+Package: YinsRLab
 Type: Package
-Title: Statistical Machine Learning Packages
-Version: 0.1.0
+Title: Yin's Statistical Machine Learning Package
+Version: 0.2.0
 Author: Yiqiao Yin
-Maintainer: Yiqiao Yin <eagle0504@gmail.com>
+Maintainer: Yiqiao Yin <Yiqiao.Yin@YinsCapital.com>
 Description: This package designs a series of machine learning algorithms for data scientist.
 License: GPL-2
-imports: quantmod,stats,xts,TTR,knitr,gtools,glmnet,fastAdaboost,e1071,keras,naivebayes,randomForest,iRF,BayesTree,gbm,ipred,pROC,Rtts,audio,beepr
+imports: Rtools, quantmod, stats, xts, TTR, knitr, gtools, glmnet, fastAdaboost, e1071, keras, naivebayes, randomForest, iRF, BayesTree, gbm, ipred, pROC, Rtts, audio, beepr
 Encoding: UTF-8
 LazyData: true

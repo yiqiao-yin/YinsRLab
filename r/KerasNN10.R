@@ -32,11 +32,11 @@ KerasNN10 <- function(
   all <- data.frame(cbind(y,x))
 
   # Setup
-  x_train <- as.matrix(all[1:round(cutoff*nrow(all),0), -1])
-  y_train <- as.matrix(all[1:round(cutoff*nrow(all),0), 1])
-  x_test <- as.matrix(all[(round(cutoff*nrow(all),0)+1):nrow(all), -1])
-  y_test <- as.matrix(all[(round(cutoff*nrow(all),0)+1):nrow(all), 1])
-  # dim(x_train); dim(y_train); dim(x_test); dim(y_test)
+  train_idx <- 1:round(cutoff*nrow(all),0)
+  x_train <- all[train_idx, -1]
+  y_train <- all[train_idx, 1]
+  x_test <- all[-train_idx, -1]
+  y_test <- all[-train_idx, 1]
 
   # Check levels for response
   number.of.levels <- nrow(plyr::count(y_train))
@@ -89,18 +89,26 @@ KerasNN10 <- function(
   ); plot(history)
 
   # Evaluate the model's performance on the test data:
-  # model %>% evaluate(x_test, y_test)
+  scores = model %>% evaluate(x_test, y_test)
 
   # Generate predictions on new data:
   y_test_hat <- model %>% predict_classes(x_test)
-  y_test <- as.matrix(all[(cutoff*nrow(all)+1):nrow(all), 1])
+  y_test <- as.matrix(all[-train_idx, 1]); y_test <- as.numeric(as.character(y_test))
   confusion.matrix <- table(Y_Hat = y_test_hat, Y =  y_test)
   test.acc <- sum(diag(confusion.matrix))/sum(confusion.matrix)
   all.error <- plyr::count(y_test - cbind(y_test_hat))
 
+  # AUC/ROC
+  if ((num_classes == 2) && (nrow(plyr::count(y_test_hat)) > 1)) {
+    AUC_test <- pROC::roc(y_test_hat, c(y_test))
+  } else {
+    AUC_test <- c("Estimate do not have enough levels.")
+  }
+
   # Return
   return(
     list(
+      Model = list(model = model, scores = scores),
       x_train = x_train,
       y_train = y_train,
       x_test = x_test,
@@ -109,7 +117,8 @@ KerasNN10 <- function(
       Confusion.Matrix = confusion.matrix,
       Confusion.Matrix.Pretty = kable(confusion.matrix),
       Testing.Accuracy = test.acc,
-      All.Types.of.Error = all.error
+      All.Types.of.Error = all.error,
+      Test_AUC = AUC_test
     )
   )
 } # End of function

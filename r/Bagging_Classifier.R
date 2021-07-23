@@ -17,8 +17,9 @@ Bagging_Classifier <- function(
   all <- data.frame(cbind(y,x))
 
   # Split data:
-  train <- all[1:round(cutoff*nrow(all),0),]; dim(train) # Training set
-  test <- all[(round(cutoff*nrow(all),0)+1):nrow(all),]; dim(test) # Testing set
+  train_idx <- 1:round(cutoff*nrow(all),0)
+  train <- all[train_idx,]; dim(train) # Training set
+  test <- all[-train_idx,]; dim(test) # Testing set
 
   # Identify Response and Explanatory:
   train.x <- data.frame(train[,-1]); colnames(train.x) <- colnames(train)[-1]; dim(train.x)
@@ -76,11 +77,11 @@ Bagging_Classifier <- function(
   return(
     list(
       Summary = sum,
+      Model = model,
       Training.Accuracy = percent.train,
       Training.AUC = auc.train,
-      #Train.ROC = plot(roc_obj.train),
       train.y.hat = preds.train.prob,
-      train.y = preds.train.prob,
+      train.y = train.y,
       test.y.hat = preds,
       test.y.truth = test.y,
       test.y.errors = plyr::count(test.y - test.y),
@@ -88,9 +89,8 @@ Bagging_Classifier <- function(
       Prediction.Table = table,
       Testing.Accuracy = percent,
       Testing.Error = 1 - percent,
-      AUC = auc,
-      Gini = auc * 2 - 1#,
-      #Test.ROC = plot(roc_obj)
+      AUC = list(roc_obj, auc),
+      Gini = auc * 2 - 1
     )
   )
 } # End of function

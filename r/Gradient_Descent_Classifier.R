@@ -11,15 +11,19 @@ Gradient_Descent_Classifier <- function(
   y = all[, 1],
   cutoff = 0.9,
   cutoff.coefficient = 1,
-  alpha = 1e-6,
-  num_iters = 1000) {
+  alpha = 1e-2,
+  earlyStop = TRUE,
+  err_threshold = 0.5,
+  num_iters = 1000,
+  verbose = TRUE) {
 
   # Data
   all <- data.frame(cbind(y,x))
 
   # Split data:
-  train <- all[1:round(cutoff*nrow(all),0),]; dim(train) # Training set
-  test <- all[(round(cutoff*nrow(all),0)+1):nrow(all),]; dim(test) # Testing set
+  train_idx <- 1:round(cutoff*nrow(all),0)
+  train <- data.frame(all[train_idx,]); dim(train) # Training set
+  test <- all[-train_idx,]; dim(test) # Testing set
 
   # Identify Response and Explanatory:
   train.x <- data.frame(train[,-1]); colnames(train.x) <- colnames(train)[-1]; dim(train.x)
@@ -44,15 +48,22 @@ Gradient_Descent_Classifier <- function(
   theta <- matrix(rep(0,number.of.coeff+1), nrow=(number.of.coeff+1))
 
   # add a column of 1's for the intercept coefficient
-  X <- cbind(1, train.x)
+  X <- cbind(train.x, 1)
 
   # gradient descent
+  if (verbose) {print("Starting training ...")}
+  if (verbose) {pb <- txtProgressBar(min = 0, max = num_iters, style = 3)}
   for (i in 1:num_iters) {
     error <- (as.matrix(X) %*% as.matrix(theta) - train.y)
     delta <- t(X) %*% as.matrix(error) / length(train.y)
     theta <- theta - alpha * delta
-    cost_history[i] <- cost(X, train.y, theta)
+    unitCost <- cost(X, train.y, theta)
+    cost_history[i] <- unitCost
     theta_history[[i]] <- theta
+    TITLE <- paste0("Round=", i, ", Cost=", round(unitCost, 4), " ")
+    if (verbose) {setTxtProgressBar(pb, i)}
+    if (earlyStop && (unitCost < err_threshold)) {if (verbose) {print("Error threshold satisfied. Break loop.")}}
+    if (earlyStop && (unitCost < err_threshold)) {break}
   } # Finished Gradient Descent
 
   # Make prediction on training:
@@ -67,6 +78,7 @@ Gradient_Descent_Classifier <- function(
   actuals <- train.y
   scores <- preds.train.prob
   roc_obj <- pROC::roc(response = actuals, predictor = c(scores))
+  roc_obj_train <- roc_obj
   auc.train <- roc_obj$auc
 
   # Make prediction on testing:
@@ -86,16 +98,23 @@ Gradient_Descent_Classifier <- function(
   actuals <- test.y
   scores <- preds
   roc_obj <- pROC::roc(response = actuals, predictor = c(scores))
+  roc_obj_test <- roc_obj
   auc <- roc_obj$auc
 
   # Truth.vs.Predicted.Probabilities
   truth.vs.pred.prob <- cbind(test.y, preds.prob)
-  colnames(truth.vs.pred.prob) <- c("True Probability", "Predicted Probability")
+  raw_score <- truth.vs.pred.prob[, 2]
+  probs <- exp(raw_score)/(1 + exp(raw_score))
+  truth.vs.pred.prob <- cbind(truth.vs.pred.prob, probs)
+  colnames(truth.vs.pred.prob) <- c("True Label", "Raw Score", "Probability")
 
   # Final output:
   return(
     list(
-      Weights = theta,
+      Summary = list(
+        theta=theta,
+        cost_history=cost_history,
+        theta_history=theta_history),
       Training.Accuracy = percent.train,
       Training.AUC = auc.train,
       Train.Y.Hat = preds.train.prob,
@@ -107,7 +126,10 @@ Gradient_Descent_Classifier <- function(
       Testing.Accuracy = percent,
       Testing.Error = 1-percent,
       AUC = auc,
-      Gini = auc*2 - 1
+      Gini = auc*2 - 1,
+      ROC_Obj = list(
+        roc_obj_train=roc_obj_train,
+        roc_obj_test=roc_obj_test )
     )
   )
 } # End of function

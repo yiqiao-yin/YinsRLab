@@ -41,8 +41,8 @@ Logistic <- function(
   preds.train.prob <- predict(model, train.x)
   preds.mean.train <- mean(preds.train.prob)
   preds.train <- ifelse(preds.train.prob > cutoff.coefficient*preds.mean.train, 1, 0)
-  table.train <- as.matrix(cbind(preds.train,train.y))
-  tab.train <- table(table.train[,1], table.train[,2])
+  table.train <- as.matrix(cbind(preds.train, train.y))
+  tab.train <- table(Y_Hat = table.train[,1], Y = table.train[,2])
   percent.train <- sum(diag(tab.train))/sum(tab.train)
 
   # ROC
@@ -56,13 +56,11 @@ Logistic <- function(
   preds.prob <- predict(model, test.x) # nrow(test.x)
   preds.mean <- mean(preds.prob)
   preds <- ifelse(preds.prob > cutoff.coefficient*preds.mean, 1, 0)
-  table <- as.matrix(
-    cbind(preds,test.y)
-  )
+  table <- as.matrix(cbind(preds, test.y))
   dim(table); head(table)
 
   # Compute accuracy:
-  table <- table(table[,1],table[,2]); table
+  table <- table(Y_Hat = table[,1], Y = table[,2]); table
   percent <- sum(diag(table))/sum(table)
 
   # ROC
@@ -82,8 +80,10 @@ Logistic <- function(
       Training.Accuracy = percent.train,
       Training.AUC = auc.train,
       #Train.ROC = plot(roc_obj.train),
-      y.hat = preds,
-      y.truth = test.y,
+      Train.Y = train.y,
+      Train.Y.Hat = preds.train.prob,
+      Test.Y = test.y,
+      Test.Y.Hat = preds,
       Truth.vs.Predicted.Probabilities = truth.vs.pred.prob,
       Prediction.Table = table,
       Testing.Accuracy = percent,

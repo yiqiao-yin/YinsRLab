@@ -28,11 +28,11 @@ KerasVGG16 <- function(
   all <- as.matrix(data.frame(cbind(y,x)))
 
   # The data, shuffled and split between train and test sets
-  x_train <- all[1:round(cutoff*nrow(all),0), -1]
-  y_train <- all[1:round(cutoff*nrow(all),0), 1]
-  x_test <- all[(round(cutoff*nrow(all),0)+1):nrow(all), -1]
-  y_test <- all[(round(cutoff*nrow(all),0)+1):nrow(all), 1]
-  dim(x_train); length(y_train); dim(x_test); length(y_test)
+  train_idx <- 1:round(cutoff*nrow(all),0)
+  x_train <- all[train_idx, -1]
+  y_train <- all[train_idx, 1]
+  x_test <- all[-train_idx, -1]
+  y_test <- all[-train_idx, 1]
 
   # Redefine  dimension of train/test inputs
   x_train <- array_reshape(x_train, c(nrow(x_train), img_rows, img_cols, 1))
@@ -76,14 +76,22 @@ KerasVGG16 <- function(
   y_test_hat_scores <- cbind(apply(predict(model, x_test), 1, max))
   y_test_hat_mean <- mean(y_test_hat_scores)
   y_test_hat <- ifelse(y_test_hat_scores > y_test_hat_mean, 1, 0)
-  y_test <- as.matrix(all[(round(cutoff*nrow(all),0)+1):nrow(all), 1])
+  y_test <- as.matrix(all[-train_idx, 1]); y_test <- as.numeric(as.character(y_test))
   confusion.matrix <- table(Y_Hat = y_test_hat, Y = y_test)
   test.acc <- sum(diag(confusion.matrix))/sum(confusion.matrix)
   all.error <- plyr::count(as.numeric(as.character(y_test)) - cbind(y_test_hat))
 
+  # AUC/ROC
+  if ((num_classes == 2) && (nrow(plyr::count(y_test_hat_scores)) > 1)) {
+    AUC_test <- pROC::roc(y_test_hat_scores, c(y_test))
+  } else {
+    AUC_test <- c("Estimate do not have enough levels.")
+  }
+
   # Output metrics
   return(
     list(
+      Model = list(model = model, scores = scores),
       Summary = c(
         paste0('x_train_shape:', dim(x_train), '\n'),
         paste0(nrow(x_train), 'train samples\n'),
@@ -99,7 +107,8 @@ KerasVGG16 <- function(
       Confusion.Matrix = confusion.matrix,
       Confusion.Matrix.Pretty = knitr::kable(confusion.matrix),
       Testing.Accuracy = test.acc,
-      All.Types.of.Error = all.error
+      All.Types.of.Error = all.error,
+      Test_AUC = AUC_test
     )
   )
 } # End of function

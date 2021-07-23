@@ -18,11 +18,13 @@ Adaboost_Classifier <- function(
   all <- data.frame(cbind(y,x))
 
   # Split data:
-  train <- data.frame(all[1:round(cutoff*nrow(all),0),]); dim(train) # Training set
-  test <- all[(round(cutoff*nrow(all),0)+1):nrow(all),]; dim(test) # Testing set
+  train_idx <- 1:round(cutoff*nrow(all),0)
+  train <- data.frame(all[train_idx,]); dim(train) # Training set
+  test <- all[-train_idx,]; dim(test) # Testing set
 
   # Identify Response and Explanatory:
-  train.x <- data.frame(train[,-1]); colnames(train.x) <- colnames(train)[-1]; dim(train.x)
+  train.x <- data.frame(train[,-1]);
+  colnames(train.x) <- colnames(train)[-1]; dim(train.x)
   train.y <- train[,1]; head(train.y)
   train <- data.frame(
     Y = train.y,
