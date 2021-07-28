@@ -34,6 +34,14 @@ This package has all functions collected in *R* folder. Almost all functions fol
 - input $y$: this is the response variable in the data set;
 - input *cutoff*: this is a numerical value from 0 to 1 (default value is 0.9), implying that the algorithm will take the first 90% of the observation as training and the rest as testing
 
+## Production Workflow
+
+How are these functions created in this package? Each function is designed to solve certain problems and they have been successful before. The entire production workflow consists of (i) Research and Development, and (ii) software production.
+
+<p align="center">
+  <img width="800" src="https://github.com/yiqiao-yin/YinsRLab/blob/master/figs/workflow.jpg">
+</p>
+
 ---
 
 # Author
