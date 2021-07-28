@@ -207,5 +207,19 @@ $$\text{Information in:} \leftarrow
 \leftarrow
 \text{Total Loss: } \mathcal{L} (\hat{y}, y)$$
 
+
+$$
+\text{Information in:} \leftarrow
+\begin{matrix}
+Y_{\langle 1 \rangle}, \hat{Y}_{\langle 1 \rangle} & Y_{\langle 2 \rangle}, \hat{Y}_{\langle 2 \rangle} &       & Y_{\langle T \rangle}, \hat{Y}_{\langle T \rangle} \\
+\uparrow               & \uparrow               &       & \uparrow \\
+X_{\langle 1 \rangle} \leftarrow    & X_{\langle 2 \rangle} \leftarrow    & \dots \leftarrow & X_{\langle T \rangle} \\
+\uparrow               & \uparrow               &       & \uparrow \\
+w_{\langle 1 \rangle}, b_{0, \langle 1 \rangle}    & w_{\langle 2 \rangle}, b_{0, \langle 2 \rangle}    &       & w_{\langle T \rangle}, b_{0, \langle T \rangle} \\
+\end{matrix}
+\leftarrow
+\text{Form beliefs about } Y_{\angle T \rangle}
+$$
+
 and the *update* action in the above architecture is dependent on your optimizer specified in the algorithm.
 
