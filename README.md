@@ -170,8 +170,6 @@ Generalize intuition from above to the following:
 - The previous hidden state (i.e. this is the same as the output of the previous cell).
 - The input at the current time step (i.e. the new information that is being fed in at that moment).
 
-## Recurrent Neural Network (a sequential model)
-
 Given data $X$ and $Y$, we want to feed information forward into a time stamp. Then we form some belief and we make some initial predictions. We investigate our beliefs by looking at the loss function of the initial guesses and the real value. We update our model according to error we observed. 
 
 ## Architecture: Feed-forward
