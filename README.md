@@ -16,8 +16,7 @@ This is the library that I use to collect common machine learning algorithm I us
 |    Content    |    Section    |
 | ------------- | ------------- |
 | Installation  | [Devtools::Install_Github](https://github.com/yiqiao-yin/YinsRLab#installation), [Input](https://github.com/yiqiao-yin/YinsRLab#input), [Workflow](https://github.com/yiqiao-yin/YinsRLab#production-workflow) |
-| Author        | [here](https://github.com/yiqiao-yin/YinsRLab#author) |
-| Acknowledgement | [here](https://github.com/yiqiao-yin/YinsRLab#acknowledge) |
+| About        | [Author](https://github.com/yiqiao-yin/YinsRLab#author), [Acknowledgement](https://github.com/yiqiao-yin/YinsRLab#acknowledge) |
 | Representation Learning | [ANN](https://github.com/yiqiao-yin/YinsRLab#artificial-neural-network), [CNN](https://github.com/yiqiao-yin/YinsRLab#convolutional-neural-network), [RNN](https://github.com/yiqiao-yin/YinsRLab#recurrent-neural-network) |
 
 
