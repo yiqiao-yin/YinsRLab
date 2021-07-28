@@ -196,16 +196,7 @@ $$\frac{\partial \triangledown}{\partial w}, \frac{\partial \triangledown}{\part
 and now with perspective of where we make our mistakes according to our parameters we can go backward
 $$
 \text{Information in:} \leftarrow
-\underbrace{
-\begin{matrix}
-Y_{\langle 1 \rangle}, \hat{Y}_{\langle 1 \rangle} & Y_{\langle 2 \rangle}, \hat{Y}_{\langle 2 \rangle} &       & Y_{\langle T \rangle}, \hat{Y}_{\langle T \rangle} \\
-\uparrow               & \uparrow               &       & \uparrow \\
-X_{\langle 1 \rangle} \leftarrow    & X_{\langle 2 \rangle} \leftarrow    & \dots \leftarrow & X_{\langle T \rangle} \\
-\uparrow               & \uparrow               &       & \uparrow \\
-w'_{\langle 1 \rangle}, b'_{0, \langle 1 \rangle}    & w'_{\langle 2 \rangle}, b'_{0, \langle 2 \rangle}    &       & w'_{\langle T \rangle}, b'_{0, \langle T \rangle} \\
-\end{matrix}}_{\text{Update: } w, b \text{ with } w', b'}
-\leftarrow
-\text{Total Loss: } \mathcal{L} (\hat{y}, y)
+
 $$
 and the *update* action in the above architecture is dependent on your optimizer specified in the algorithm.
 
