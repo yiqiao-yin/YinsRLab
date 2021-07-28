@@ -195,27 +195,15 @@ $$\triangledown = \frac{\partial \mathcal{L}}{\partial a}$$
 and then with respect with parameters $w$ and $b$
 $$\frac{\partial \triangledown}{\partial w}, \frac{\partial \triangledown}{\partial a}$$
 and now with perspective of where we make our mistakes according to our parameters we can go backward
-$$\text{Information in:} \leftarrow 
-\underbrace{
-\begin{matrix}
-	Y_{\langle 1 \rangle}, \hat{Y}_{\langle 1 \rangle} & Y_{\langle 2 \rangle}, \hat{Y}_{\langle 2 \rangle} &       & Y_{\langle T \rangle}, \hat{Y}_{\langle T \rangle} \\
-	\uparrow               & \uparrow               &       & \uparrow \\
-	X_{\langle 1 \rangle} \leftarrow    & X_{\langle 2 \rangle} \leftarrow    & \dots \leftarrow & X_{\langle T \rangle} \\
-	\uparrow               & \uparrow               &       & \uparrow \\
-	w'_{\langle 1 \rangle}, b'_{0, \langle 1 \rangle}    & w'_{\langle 2 \rangle}, b'_{0, \langle 2 \rangle}    &       & w'_{\langle T \rangle}, b'_{0, \langle T \rangle} \\
-\end{matrix}}_{\text{Update: } w, b \text{ with } w', b'}
-\leftarrow
-\text{Total Loss: } \mathcal{L} (\hat{y}, y)$$
-
 
 $$
 \text{Information in:} \leftarrow
 \begin{matrix}
 Y_{\langle 1 \rangle}, \hat{Y}_{\langle 1 \rangle} & Y_{\langle 2 \rangle}, \hat{Y}_{\langle 2 \rangle} &       & Y_{\langle T \rangle}, \hat{Y}_{\langle T \rangle} \\
-\uparrow               & \uparrow               &       & \uparrow \\
+\downarrow               & \downarrow               &       & \downarrow \\
 X_{\langle 1 \rangle} \leftarrow    & X_{\langle 2 \rangle} \leftarrow    & \dots \leftarrow & X_{\langle T \rangle} \\
-\uparrow               & \uparrow               &       & \uparrow \\
-w_{\langle 1 \rangle}, b_{0, \langle 1 \rangle}    & w_{\langle 2 \rangle}, b_{0, \langle 2 \rangle}    &       & w_{\langle T \rangle}, b_{0, \langle T \rangle} \\
+\downarrow               & \downarrow               &       & \downarrow \\
+\text{Update: } w_{\langle 1 \rangle}, b_{0, \langle 1 \rangle}    & w_{\langle 2 \rangle}, b_{0, \langle 2 \rangle}    &       & w_{\langle T \rangle}, b_{0, \langle T \rangle} \\
 \end{matrix}
 \leftarrow
 \text{Form beliefs about } Y_{\angle T \rangle}
