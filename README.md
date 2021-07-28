@@ -199,4 +199,4 @@ $$
 
 $$
 and the *update* action in the above architecture is dependent on your optimizer specified in the algorithm.
-
+$$
