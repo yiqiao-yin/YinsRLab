@@ -183,6 +183,7 @@ w_{\langle 1 \rangle}, b_{0, \langle 1 \rangle}    & w_{\langle 2 \rangle}, b_{0
 \rightarrow
 \text{Form beliefs about } Y_{\angle T \rangle}
 $$
+
 while the educated guesses $\hat{Y}_{\langle T \rangle}$ are our beliefs about real $Y$ at time stamp $T$. 
 
 ## Architecture: Feed-backward
