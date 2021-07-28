@@ -155,22 +155,12 @@ Some additional sources:
 
 ## Recurrent Neural Network
 
-LSTM is an tweak version of Recurrent Neural Network which forgets or remembers certain information over a long period of time. In this notebook, I will use LSTM to forecast Google stock price.
-
-Stock price today is probably dependent on:
-- The trend it has been folloing from the previous day.
-- The price it was traded at from previous day.
-- Some other factors that may affect stock price today.
+LSTM is an tweak version of Recurrent Neural Network which forgets or remembers certain information over a long period of time.
 
 Generalize intuition from above to the following:
 - The previous cell state (i.e. the information that was present in the memory after the previous time step).
 - The previous hidden state (i.e. this is the same as the output of the previous cell).
 - The input at the current time step (i.e. the new information that is being fed in at that moment).
-
-In this notebook, we cover
-- Part 1 - Data Preprocessing
-- Part 2 - Construct RNN Architecture
-- Part 3 - Predictions and Performance Visualization
 
 ## Recurrent Neural Network (a sequential model)
 
