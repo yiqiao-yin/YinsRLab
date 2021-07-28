@@ -12,6 +12,8 @@ This is the library that I use to collect common machine learning algorithm I us
 	<img src="https://img.shields.io/badge/license-CC0-blue.svg"/>
 </p>
 
+---
+
 # Installation
 
 The installation of this package is simple. We recommend to use devtools to install from Github.
@@ -25,18 +27,22 @@ The installation of this package is simple. We recommend to use devtools to inst
 devtools::install_github("yiqiao-yin/YinsRLab")
 ```
 
-# Input
+## Input
 
 This package has all functions collected in *R* folder. Almost all functions following the following format:
 - input $X$: this is the explanatory variables in the data set;
 - input $y$: this is the response variable in the data set;
 - input *cutoff*: this is a numerical value from 0 to 1 (default value is 0.9), implying that the algorithm will take the first 90% of the observation as training and the rest as testing
 
+---
+
 # Author
 
 I am currently a PhD student in Statistics at Columbia University. 
 
 Prior to Columbia, I have held professional positions including an enterprise-level Data Scientist at Bayer and a quantitative researcher at AQR working on alternative quantitative approaches to portfolio management and factor-based trading, and a trader at T3 Trading on Wall Street. I supervise a small fund specializing in algorithmic trading (since 2011, performance is here). I also run my own YouTube Channel.
+
+---
 
 # Acknowledge
 
