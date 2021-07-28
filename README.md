@@ -35,12 +35,16 @@ The installation of this package is simple. We recommend to use devtools to inst
 devtools::install_github("yiqiao-yin/YinsRLab")
 ```
 
+Go back up to the top, please click [here](https://github.com/yiqiao-yin/YinsRLab#yinsrlab).
+
 ## Input
 
 This package has all functions collected in *R* folder. Almost all functions following the following format:
 - input $X$: this is the explanatory variables in the data set;
 - input $y$: this is the response variable in the data set;
 - input *cutoff*: this is a numerical value from 0 to 1 (default value is 0.9), implying that the algorithm will take the first 90% of the observation as training and the rest as testing
+
+Go back up to the top, please click [here](https://github.com/yiqiao-yin/YinsRLab#yinsrlab).
 
 ## Production Workflow
 
@@ -52,6 +56,8 @@ How are these functions created in this package? Each function is designed to so
 
 ---
 
+Go back up to the top, please click [here](https://github.com/yiqiao-yin/YinsRLab#yinsrlab).
+
 # Author
 
 I am currently a PhD student in Statistics at Columbia University. 
@@ -60,15 +66,21 @@ Prior to Columbia, I have held professional positions including an enterprise-le
 
 ---
 
+Go back up to the top, please click [here](https://github.com/yiqiao-yin/YinsRLab#yinsrlab).
+
 # Acknowledge
 
 This package is jointly designed with [Statistical Machine Learning](https://github.com/yiqiao-yin/Statistical-Machine-Learning) and one can refer to my [Advice](https://github.com/yiqiao-yin/Statistical-Machine-Learning/blob/master/Story.md) to my audience and to those who are interested in developing their own packages.
 
 ---
 
+Go back up to the top, please click [here](https://github.com/yiqiao-yin/YinsRLab#yinsrlab).
+
 # Representation Learning
 
 There are three major types of *Representation Learning*.
+
+Go back up to the top, please click [here](https://github.com/yiqiao-yin/YinsRLab#yinsrlab).
 
 ## Artificial Neural Network
 
@@ -122,6 +134,8 @@ model %>%
 summary(model)
 ```
 
+Go back up to the top, please click [here](https://github.com/yiqiao-yin/YinsRLab#yinsrlab).
+
 ## Convolutional Neural Network
 
 Convolutional Neural Network (CNN) is built upon the understanding of a basic neural network. In addition, we make the assumption that we are accepting image data. This assumption implies two key information: (i) local information and its intrinsic value, (ii) geospatial architecture may have important relationship amonst each other. Based on this information and understanding of this type of data sets, we have a strong motivation of using a new tool to develop new features to feed in the neural network architecture.
@@ -161,6 +175,8 @@ Some additional sources:
 - Keras Examples: [python](https://keras.io/examples/), [R](https://tensorflow.rstudio.com/tutorials/)
 - General AI Blog: [R AI Blog](https://blogs.rstudio.com/ai/)
 
+Go back up to the top, please click [here](https://github.com/yiqiao-yin/YinsRLab#yinsrlab).
+
 ## Recurrent Neural Network
 
 LSTM is an tweak version of Recurrent Neural Network which forgets or remembers certain information over a long period of time.
@@ -171,6 +187,8 @@ Generalize intuition from above to the following:
 - The input at the current time step (i.e. the new information that is being fed in at that moment).
 
 Given data $X$ and $Y$, we want to feed information forward into a time stamp. Then we form some belief and we make some initial predictions. We investigate our beliefs by looking at the loss function of the initial guesses and the real value. We update our model according to error we observed. 
+
+Go back up to the top, please click [here](https://github.com/yiqiao-yin/YinsRLab#yinsrlab).
 
 ## Architecture: Feed-forward
 
@@ -191,6 +209,8 @@ w_{\langle 1 \rangle}, b_{0, \langle 1 \rangle}    & w_{\langle 2 \rangle}, b_{0
 $$
 
 while the educated guesses $\hat{Y}_{\langle T \rangle}$ are our beliefs about real $Y$ at time stamp $T$. 
+
+Go back up to the top, please click [here](https://github.com/yiqiao-yin/YinsRLab#yinsrlab).
 
 ## Architecture: Feed-backward
 
