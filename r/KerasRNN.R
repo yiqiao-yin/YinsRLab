@@ -127,6 +127,7 @@ KerasRNN <- function(
 
     # Generate predictions on new data:
     y_test_hat <- model %>% predict_classes(x_test)
+    y_train_hat_raw <- model %>% predict_proba(x_train)
     y_test_hat_raw <- model %>% predict_proba(x_test)
     confusion.matrix <- table(Y_Hat = y_test_hat, Y = y_test)
     test.acc <- sum(diag(confusion.matrix))/sum(confusion.matrix)
@@ -159,6 +160,7 @@ KerasRNN <- function(
     scores = model %>% evaluate(x_test, y_test)
 
     # Generate predictions on new data:
+    y_train_hat_raw <- model %>% predict_proba(x_train)
     y_test_hat_raw <- model %>% predict_proba(x_test)
     y_test_hat = y_test_hat_raw
     y_test_eval_matrix <- data.frame(
@@ -197,6 +199,7 @@ KerasRNN <- function(
       y_train = y_train,
       x_test = x_test,
       y_test = y_test,
+      y_train_hat = y_train_hat_raw,
       y_test_hat = y_test_hat,
       y_test_eval_matrix = y_test_eval_matrix,
       Training.Plot = plot(history),

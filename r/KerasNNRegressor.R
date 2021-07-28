@@ -112,6 +112,7 @@ KerasNNRegressor <- function(
 
   # Generate predictions on new data:
   if (forceClassifier == TRUE) {
+    y_train_hat <- model %>% predict_proba(x_train)
     y_test_hat <- model %>% predict_proba(x_test)
     y_test_binary <- ifelse(y_test_hat > mean(y_test_hat), 1, 0)
     confusion.matrix <- table(Y_Hat = y_test_binary, Y = y_test)
@@ -138,6 +139,7 @@ KerasNNRegressor <- function(
       Test_AUC = AUC_test
     )
   } else {
+    y_train_hat <- model %>% predict_proba(x_train)
     y_test_hat <- model %>% predict_proba(x_test)
     MSE_test <- mean((y_test - y_test_hat)^2)
     y_test_eval_matrix <- cbind(
@@ -158,6 +160,7 @@ KerasNNRegressor <- function(
       y_train = y_train,
       x_test = x_test,
       y_test = y_test,
+      y_train_hat = y_train_hat,
       y_test_hat = y_test_hat,
       y_test_eval_matrix = y_test_eval_matrix,
       Training.Plot = plot(history),
