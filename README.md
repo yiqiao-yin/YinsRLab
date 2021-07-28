@@ -39,7 +39,7 @@ This package has all functions collected in *R* folder. Almost all functions fol
 How are these functions created in this package? Each function is designed to solve certain problems and they have been successful before. The entire production workflow consists of (i) Research and Development, and (ii) software production.
 
 <p align="center">
-  <img width="800" src="https://github.com/yiqiao-yin/YinsRLab/blob/master/figs/workflow.jpg">
+  <img width="600" src="https://github.com/yiqiao-yin/YinsRLab/blob/master/figs/workflow.jpg">
 </p>
 
 ---
