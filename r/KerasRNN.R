@@ -7,6 +7,7 @@
 #'
 #' # Define function
 KerasRNN <- function(
+  X = NULL,
   y = y,
   cutoff = 0.8,
   validation_split = 1 - cutoff,
@@ -26,31 +27,52 @@ KerasRNN <- function(
   # Package
   library(keras)
 
-  # CLEAN DATA:
-  # get a list of start indexes for our (overlapping) chunks
-  start_indexes <- seq(1, length(y) - (max_len + 1), by = 1)
+  # Separate scenarios:
+  # if X is NULL, we pursue to consider the input vector y
+  # as a long time-series data (one big vector), the code
+  # will then create a autoregressor with max_len (another input)
+  # to be the parameter of AR(max_len), but the algorithm
+  # will follow LSTM or Bidirectional RNN
+  # if X is filled as a data frame (we only take data frame),
+  # then we pursue X (this input data frame) as covariate matrix
+  # and in this case the vector y (assuming it has the same length as X)
+  # will be response variable
+  if (is.null(X)) {
+    # CLEAN DATA:
+    # get a list of start indexes for our (overlapping) chunks
+    start_indexes <- seq(1, length(y) - (max_len + 1), by = 1)
 
-  # create an empty matrix to store our data in
-  data_matrix <- matrix(nrow = length(start_indexes), ncol = max_len + 1)
+    # create an empty matrix to store our data in
+    data_matrix <- matrix(nrow = length(start_indexes), ncol = max_len + 1)
 
-  # fill our matrix with the overlapping slices of our dataset
-  for (i in 1:length(start_indexes)){
-    data_matrix[i,] <- y[start_indexes[i]:(start_indexes[i] + max_len)]
-  }
+    # fill our matrix with the overlapping slices of our dataset
+    for (i in 1:length(start_indexes)){
+      data_matrix[i,] <- y[start_indexes[i]:(start_indexes[i] + max_len)]
+    }
 
-  # split our data into the day we're predict (y), and the
-  # sequence of days leading up to it (X)
-  X <- data_matrix[,-ncol(data_matrix)]
-  y <- data_matrix[,ncol(data_matrix)]
+    # split our data into the day we're predict (y), and the
+    # sequence of days leading up to it (X)
+    X <- data_matrix[,-ncol(data_matrix)]
+    y <- data_matrix[,ncol(data_matrix)]
 
-  # training data
-  train_idx = 1:round(cutoff*length(y),0)
-  x_train <- array(X[train_idx,], dim = c(length(train_idx), max_len, 1))
-  y_train <- y[train_idx]
+    # training data
+    train_idx = 1:round(cutoff*length(y),0)
+    x_train <- array(X[train_idx,], dim = c(length(train_idx), max_len, 1))
+    y_train <- y[train_idx]
 
-  # testing data
-  x_test <- array(X[-train_idx,], dim = c(length(y) - length(train_idx), max_len, 1))
-  y_test <- y[-train_idx]
+    # testing data
+    x_test <- array(X[-train_idx,], dim = c(length(y) - length(train_idx), max_len, 1))
+    y_test <- y[-train_idx]
+  } else {
+    # training data
+    train_idx = 1:round(cutoff*length(y),0)
+    x_train <- array(X[train_idx,], dim = c(length(train_idx), ncol(X), 1))
+    y_train <- y[train_idx]
+
+    # testing data
+    x_test <- array(X[-train_idx,], dim = c(length(y) - length(train_idx), ncol(X), 1))
+    y_test <- y[-train_idx]
+  } # Done
 
   # Defining the Model
   if (tolower(useModel) == "lstm") {
@@ -188,7 +210,8 @@ KerasRNN <- function(
     AUC_test <- pROC::roc(response = y_test_for_roc, predictor = y_test_class1_for_roc)
   } else {
     print("Estimate do not have enough levels.")
-    AUC_test <- NA
+    AUC_test = list()
+    AUC_test$auc <- 0.5
   }
 
   # Return
