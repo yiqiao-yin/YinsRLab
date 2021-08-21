@@ -19,6 +19,7 @@ KerasNeuralSequenceTranslation = function(
   l3.units = 6,
   activation = 'tanh',
   loss = 'loss_mean_squared_error',
+  useDice = TRUE,
   optimizer = optimizer_rmsprop(),
   batch_size = 128,
   epochs = 10,
@@ -112,11 +113,27 @@ KerasNeuralSequenceTranslation = function(
     }
   }
 
+  # Dice Loss
+  # Wiki: https://en.wikipedia.org/wiki/S%C3%B8rensen%E2%80%93Dice_coefficient
+  dice <- custom_metric("dice", function(y_true, y_pred, smooth = 1.0) {
+    y_true_f <- k_flatten(y_true)
+    y_pred_f <- k_flatten(y_pred)
+    intersection <- k_sum(y_true_f * y_pred_f)
+    (2 * intersection + smooth) / (k_sum(y_true_f) + k_sum(y_pred_f) + smooth)
+  })
+
   # Compile and Train
   # compile the model with appropriate loss function, optimizer, and metrics:
-  model %>% compile(
-    loss = loss,
-    optimizer = optimizer )
+  if (useDice) {
+    model %>% compile(
+      loss = loss,
+      optimizer = optimizer,
+      metrics = dice )
+  } else {
+    model %>% compile(
+      loss = loss,
+      optimizer = optimizer )
+  } # done
   history = model %>% fit(
     x_train, y_train,
     batch_size = batch_size,
@@ -141,7 +158,8 @@ KerasNeuralSequenceTranslation = function(
       lwd = 3,
       xlab = "Sequential Index (Time or Day)",
       ylab = "Real Values",
-      main = paste0("Real Data: Y Matrix \n(each obs has length of ", ncol(y_test)/max_len, ")"))
+      main = paste0("Real Data: Y Matrix"))
+    eachLoss = sapply(1:ncol(yhat_test_mat), function(s) mean(abs(y_test[,s] - yhat_test_mat[,s]), na.rm = TRUE))
     matplot(
       yhat_test_mat,
       type = 'l',
@@ -150,8 +168,7 @@ KerasNeuralSequenceTranslation = function(
       lwd = 3,
       xlab = "Sequential Index (Time or Day)",
       ylab = "Predicted Values",
-      main = paste0("Prediction: YHat Matrix \n(each obs has length of ", ncol(yhat_test_mat)/max_len, ")"))
-    par(mfrow=c(1,1))
+      main = paste0("Prediction: YHat Matrix \n(average of the MAEs for all paths: ", mean(round(eachLoss,3), na.rm = TRUE), ")"))
   } # Done
 
   # Return
