@@ -232,7 +232,7 @@ X_{\langle 1 \rangle} \leftarrow    & X_{\langle 2 \rangle} \leftarrow    & \dot
 \text{Update: } w_{\langle 1 \rangle}, b_{0, \langle 1 \rangle}    & w_{\langle 2 \rangle}, b_{0, \langle 2 \rangle}    &       & w_{\langle T \rangle}, b_{0, \langle T \rangle} \\
 \end{matrix}
 \leftarrow
-\text{Form beliefs about } Y_{\angle T \rangle}
+\text{Form beliefs about } Y_{\langle T \rangle}
 $$
 
 and the *update* action in the above architecture is dependent on your optimizer specified in the algorithm.
