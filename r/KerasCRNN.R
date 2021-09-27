@@ -99,7 +99,7 @@ KerasCRNN <- function(
   scores
 
   # Create a graph of accuracy and loss over time
-  Plt = plot(history)
+  plot(history)
 
   # Prediction
   predictions <- model %>% predict(x_test)
@@ -113,12 +113,13 @@ KerasCRNN <- function(
   if ((num_classes == 2) && (nrow(plyr::count(y_test_hat)) > 1)) {
     AUC_test <- pROC::roc(y_test_hat, c(y_test))
   } else {
-    AUC_test <- c("Estimate do not have enough levels.")
+    AUC_test <- c("Estimate do not sufficient levels.")
   }
 
   # Comment
   return(list(
     Model = list(model = model, scores = scores),
+    Y_Hat_Original = predictions,
     Y_Hat = y_hat,
     Y_Hat_Test = y_test,
     Confusion_Matrix = confusion.matrix,
