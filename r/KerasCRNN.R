@@ -102,6 +102,7 @@ KerasCRNN <- function(
   plot(history)
 
   # Prediction
+  predictions_train <- model %>% predict(x_train)
   predictions <- model %>% predict(x_test)
   y_hat <- as.numeric(predictions > mean(predictions)); y_test_hat <- y_hat
   y_test <- y_test_backup; y_test <- as.numeric(as.character(y_test))
@@ -119,9 +120,11 @@ KerasCRNN <- function(
   # Comment
   return(list(
     Model = list(model = model, scores = scores),
-    Y_Hat_Original = predictions,
-    Y_Hat = y_hat,
-    Y_Hat_Test = y_test,
+    Y_Hat_Original_Prediction_Train = predictions_train,
+    Y_Train = y_train,
+    Y_Hat_Original_Prediction_Test = predictions,
+    Y_Hat_Binary_Prediction_Test = y_hat,
+    Y_Test = y_test,
     Confusion_Matrix = confusion.matrix,
     Test_Accuracy = test.acc,
     All_Error_Types = all.error,
