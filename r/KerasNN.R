@@ -133,6 +133,7 @@ KerasNN <- function(
       y_test = y_test,
       y_test_hat = y_test_hat,
       y_test_eval_matrix = y_test_eval_matrix,
+      history = history,
       Training.Plot = plot(history),
       Confusion.Matrix = list(regularTable = confusion.matrix, prettyTable = knitr::kable(confusion.matrix)),
       Testing.Accuracy = test.acc,

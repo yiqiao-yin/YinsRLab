@@ -113,6 +113,7 @@ KerasNN10 <- function(
       y_train = y_train,
       x_test = x_test,
       y_test = y_test,
+      history = history,
       Training.Plot = plot(history),
       Confusion.Matrix = confusion.matrix,
       Confusion.Matrix.Pretty = kable(confusion.matrix),

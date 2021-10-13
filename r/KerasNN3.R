@@ -107,6 +107,7 @@ KerasNN3 <- function(
       y_test = y_test,
       y_test_hat = y_test_hat,
       y_test_eval_matrix = y_test_eval_matrix,
+      history = history,
       Training.Plot = plot(history),
       Confusion.Matrix = confusion.matrix,
       Confusion.Matrix.Pretty = knitr::kable(confusion.matrix),

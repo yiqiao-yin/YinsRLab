@@ -153,6 +153,7 @@ KerasNN3VAE <- function(
       encoder = encoder,
       generator = generator,
       vae = vae,
+      history = history,
       x_train_encoded = x_train_encoded,
       x_test_encoded = x_test_encoded,
       PLT = PLT),

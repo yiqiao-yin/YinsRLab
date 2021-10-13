@@ -103,6 +103,7 @@ KerasVGG16 <- function(
       x_test = x_test,
       y_test = y_test,
       y_test_hat = y_test_hat,
+      history = history,
       Training.Plot = plot(history),
       Confusion.Matrix = confusion.matrix,
       Confusion.Matrix.Pretty = knitr::kable(confusion.matrix),

@@ -120,6 +120,7 @@ KerasCRNN <- function(
   # Comment
   return(list(
     Model = list(model = model, scores = scores),
+    history = history,
     Y_Hat_Original_Prediction_Train = predictions_train,
     Y_Train = y_train,
     Y_Hat_Original_Prediction_Test = predictions,

@@ -175,6 +175,7 @@ KerasNeuralSequenceTranslation = function(
   return(
     list(
       Model = list(model = model, weights = model$weights),
+      history = history,
       X = X, # original explanatory data matrix
       y = y, # original response data matrix
       x_train = x_train,

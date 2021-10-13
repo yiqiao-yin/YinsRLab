@@ -30,7 +30,9 @@ export(iter_Random_Forest_Classifier)
 export(Bayesian_Additive_Regression_Tree_Classifier)
 export(Bayesian_Additive_Regression_Tree_Regressor)
 export(Linear_Regression_Regressor)
+export(plot_training_validating_path)
 export(multiAUC)
+export(extract_any_internal_layer)
 
 # ANN, DNN, CNN, RNN
 export(KerasNN)

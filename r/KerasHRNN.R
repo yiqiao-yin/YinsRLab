@@ -80,7 +80,7 @@ KerasHRNN <- function(
   )
 
   # Training
-  model %>% fit(
+  history <- model %>% fit(
     x_train, y_train,
     batch_size = batch_size,
     epochs = epochs,
@@ -112,6 +112,7 @@ KerasHRNN <- function(
   # Comment
   return(list(
     Model = list(model = model, scores = scores),
+    history = history,
     Data = all,
     test_Y_Hat = y_hat,
     test_Y = y_test,
