@@ -60,7 +60,7 @@ Go back up to the top, please click [here](https://github.com/yiqiao-yin/YinsRLa
 
 # Author
 
-I am currently a PhD student in Statistics at Columbia University. 
+I was a PhD student in Statistics at Columbia University. 
 
 Prior to Columbia, I have held professional positions including an enterprise-level Data Scientist at Bayer and a quantitative researcher at AQR working on alternative quantitative approaches to portfolio management and factor-based trading, and a trader at T3 Trading on Wall Street. I supervise a small fund specializing in algorithmic trading (since 2011, performance is here). I also run my own YouTube Channel.
 
